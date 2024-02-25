@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { Modal, Text, View } from "react-native";
 
+import { colors } from "../../styles/colors";
 import { styles } from "./styles";
 
-import ButtonModal from "../../components/ButtonModal";
-import ButtonSearch from "../../components/ButtonSearch";
-
+import { ButtonModal } from "../../components/ButtonModal";
+import { ButtonSearch } from "../../components/ButtonSearch";
 import { InputHome } from "../../components/InputAddress";
+import { ModalPicker } from "../../components/ModalPicker";
+
 import apiCity from "../../services/apiCity";
-import { colors } from "../../styles/colors";
 
 export type StateProps = {
 	id: string;
 	sigla: string;
-	nome: string;
 };
 
 export type CityProps = {
 	id: string;
-	sigla: string;
 	nome: string;
 };
 
@@ -29,7 +28,7 @@ const Home = () => {
 
 	const [city, setCity] = useState<CityProps[] | []>([]);
 	const [citySelected, setCitySelected] = useState<CityProps | undefined>();
-	const [modalCitySelected, setModalCitySelected] = useState(false);
+	const [modalCityVisible, setModalCityVisible] = useState(false);
 
 	const [address, setAddress] = useState("");
 
@@ -67,8 +66,13 @@ const Home = () => {
 		<View style={styles.container}>
 			<Text style={styles.title}>Encontre seu CEP</Text>
 			<View style={styles.content}>
-				{state.length !== 0 && <ButtonModal text={stateSelected?.sigla} handleModal={() => {}} />}
-				{city.length !== 0 && <ButtonModal text={citySelected?.nome} handleModal={() => {}} />}
+				{state.length !== 0 && (
+					<ButtonModal text={stateSelected?.sigla} handleModal={() => setModalStateVisible(true)} />
+				)}
+				{city.length !== 0 && (
+					<ButtonModal text={citySelected?.nome} handleModal={() => setModalCityVisible(true)} />
+				)}
+
 				<InputHome.Container>
 					<InputHome.Field
 						placeholder="Digite seu endereço..."
@@ -78,7 +82,24 @@ const Home = () => {
 					/>
 					<InputHome.ClearButton onPress={() => setAddress("")} />
 				</InputHome.Container>
+
 				<ButtonSearch />
+
+				<Modal transparent={true} visible={modalStateVisible} animationType="fade">
+					<ModalPicker
+						handleCloseModal={() => setModalStateVisible(false)}
+						data={state}
+						selectedItem={(item) => "sigla" in item && setStateSelected(item)}
+					/>
+				</Modal>
+
+				<Modal transparent={true} visible={modalCityVisible} animationType="fade">
+					<ModalPicker
+						handleCloseModal={() => setModalCityVisible(false)}
+						data={city}
+						selectedItem={(item) => "nome" in item && setCitySelected(item)}
+					/>
+				</Modal>
 			</View>
 		</View>
 	);

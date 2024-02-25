@@ -1,15 +1,38 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+
 import { styles } from "./styles";
 
-type ModalPickerProps = {};
+import { CityProps, StateProps } from "../../pages/Home";
 
-const ModalPicker = () => {
-	return (
-		<View style={styles.container}>
-			<Text></Text>
-		</View>
-	);
+type ModalPickerProps = {
+	data: StateProps[] | CityProps[];
+	handleCloseModal: () => void;
+	selectedItem: (item: StateProps | CityProps) => void;
 };
 
-export default ModalPicker;
+export const ModalPicker = ({ handleCloseModal, data, selectedItem }: ModalPickerProps) => {
+	const onPressItem = (item: StateProps | CityProps) => {
+		selectedItem(item);
+		handleCloseModal();
+	};
+
+	return (
+		<TouchableOpacity activeOpacity={0.7} style={styles.container} onPress={handleCloseModal}>
+			<View style={styles.content}>
+				<TextInput style={styles.input} />
+				<ScrollView showsVerticalScrollIndicator={false}>
+					{data.map((item, index) => (
+						<TouchableOpacity key={index} style={styles.data} onPress={() => onPressItem(item)}>
+							{"sigla" in item ? (
+								<Text style={styles.item}>{item.sigla}</Text>
+							) : (
+								<Text style={styles.item}>{item.nome}</Text>
+							)}
+						</TouchableOpacity>
+					))}
+				</ScrollView>
+			</View>
+		</TouchableOpacity>
+	);
+};

@@ -11,13 +11,15 @@ type ButtonProps = {
 	handleModal: () => void;
 };
 
-const ButtonModal = ({ text, handleModal, ...rest }: ButtonProps & TouchableOpacityProps) => {
+export const ButtonModal = ({
+	text,
+	handleModal,
+	...rest
+}: ButtonProps & TouchableOpacityProps) => {
 	return (
-		<TouchableOpacity style={styles.container} {...rest} onPress={handleModal}>
+		<TouchableOpacity activeOpacity={0.7} style={styles.container} {...rest} onPress={handleModal}>
 			<Text style={styles.text}>{text}</Text>
 			<Feather name="arrow-down-circle" size={24} color={colors.blue[800]} />
 		</TouchableOpacity>
 	);
 };
-
-export default ButtonModal;
