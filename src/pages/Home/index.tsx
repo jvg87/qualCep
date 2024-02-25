@@ -5,8 +5,10 @@ import { styles } from "./styles";
 
 import ButtonModal from "../../components/ButtonModal";
 import ButtonSearch from "../../components/ButtonSearch";
-import InputHome from "../../components/InputHome";
+
+import { InputHome } from "../../components/InputAddress";
 import apiCity from "../../services/apiCity";
+import { colors } from "../../styles/colors";
 
 export type StateProps = {
 	id: string;
@@ -29,12 +31,18 @@ const Home = () => {
 	const [citySelected, setCitySelected] = useState<CityProps | undefined>();
 	const [modalCitySelected, setModalCitySelected] = useState(false);
 
+	const [address, setAddress] = useState("");
+
 	useEffect(() => {
 		async function loadState() {
-			const response = await apiCity.get("/estados?orderBy=nome");
+			try {
+				const response = await apiCity.get("/estados?orderBy=nome");
 
-			setState(response.data);
-			setStateSelected(response.data[0]);
+				setState(response.data);
+				setStateSelected(response.data[0]);
+			} catch (error) {
+				console.log(error);
+			}
 		}
 
 		loadState();
@@ -42,10 +50,14 @@ const Home = () => {
 
 	useEffect(() => {
 		async function loadCity() {
-			const response = await apiCity.get(`/estados/${stateSelected?.id}/municipios`);
+			try {
+				const response = await apiCity.get(`/estados/${stateSelected?.id}/municipios`);
 
-			setCity(response.data);
-			setCitySelected(response.data[0]);
+				setCity(response.data);
+				setCitySelected(response.data[0]);
+			} catch (error) {
+				console.log(error);
+			}
 		}
 
 		loadCity();
@@ -57,7 +69,15 @@ const Home = () => {
 			<View style={styles.content}>
 				{state.length !== 0 && <ButtonModal text={stateSelected?.sigla} handleModal={() => {}} />}
 				{city.length !== 0 && <ButtonModal text={citySelected?.nome} handleModal={() => {}} />}
-				<InputHome placeholder="Digite seu endereço..." />
+				<InputHome.Container>
+					<InputHome.Field
+						placeholder="Digite seu endereço..."
+						cursorColor={colors.blue[800]}
+						onChangeText={setAddress}
+						value={address}
+					/>
+					<InputHome.ClearButton onPress={() => setAddress("")} />
+				</InputHome.Container>
 				<ButtonSearch />
 			</View>
 		</View>
