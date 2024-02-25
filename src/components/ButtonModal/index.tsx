@@ -3,6 +3,9 @@ import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
 
 import { styles } from "./styles";
 
+import Feather from "react-native-vector-icons/Feather";
+import { colors } from "../../styles/colors";
+
 type ButtonProps = {
 	text: string | undefined;
 	handleModal: () => void;
@@ -12,6 +15,7 @@ const ButtonModal = ({ text, handleModal, ...rest }: ButtonProps & TouchableOpac
 	return (
 		<TouchableOpacity style={styles.container} {...rest} onPress={handleModal}>
 			<Text style={styles.text}>{text}</Text>
+			<Feather name="arrow-down-circle" size={24} color={colors.blue[800]} />
 		</TouchableOpacity>
 	);
 };
