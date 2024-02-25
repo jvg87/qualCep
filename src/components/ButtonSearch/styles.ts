@@ -3,23 +3,17 @@ import { colors } from "../../styles/colors";
 
 export const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
-		backgroundColor: colors.blue[600],
-		paddingHorizontal: 8,
-	},
-	content: {
 		width: "100%",
-		borderRadius: 8,
-		backgroundColor: colors.blue[200],
-		paddingHorizontal: 8,
-		paddingTop: 8,
+		height: 50,
+		justifyContent: "center",
+		backgroundColor: colors.blue[800],
+		marginBottom: 8,
+		borderRadius: 5,
+		alignItems: "center",
 	},
-	title: {
+	text: {
+		fontSize: 22,
 		color: colors.blue[200],
-		fontSize: 32,
 		fontWeight: "bold",
-		marginBottom: 16,
 	},
 });
