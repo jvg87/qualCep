@@ -5,7 +5,7 @@ import { styles } from "./styles";
 const Favorites = () => {
 	return (
 		<View style={styles.container}>
-			<Text>Página de Favoritos</Text>
+			<Text style={styles.text}>Página de Favoritos</Text>
 		</View>
 	);
 };

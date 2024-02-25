@@ -51,6 +51,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Feather.ttf</string>
-	</array>
+		<string>FontAwesome6_Solid.ttf</string>
+		<string>Foundation.ttf</string>
+	</array>\
 </dict>
 </plist>
