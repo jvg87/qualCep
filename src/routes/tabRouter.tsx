@@ -2,13 +2,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 
 import Favorites from "../pages/Favorites";
-import Home from "../pages/Home";
 
 import Icon from "react-native-vector-icons/Foundation";
 import { colors } from "../styles/colors";
+import StackRouter from "./stackRouter";
 
 export type TabParams = {
-	Home: undefined;
+	HomeStack: undefined;
 	Favorites: undefined;
 };
 
@@ -29,8 +29,8 @@ const TabRouter = () => {
 			}}
 		>
 			<Tab.Screen
-				name="Home"
-				component={Home}
+				name="HomeStack"
+				component={StackRouter}
 				options={{
 					tabBarIcon: ({ color }) => <Icon name="home" size={32} color={color} />,
 				}}

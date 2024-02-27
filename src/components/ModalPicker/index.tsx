@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 import { styles } from "./styles";
 
@@ -20,7 +20,6 @@ export const ModalPicker = ({ handleCloseModal, data, selectedItem }: ModalPicke
 	return (
 		<TouchableOpacity activeOpacity={0.7} style={styles.container} onPress={handleCloseModal}>
 			<View style={styles.content}>
-				<TextInput style={styles.input} />
 				<ScrollView showsVerticalScrollIndicator={false}>
 					{data.map((item, index) => (
 						<TouchableOpacity key={index} style={styles.data} onPress={() => onPressItem(item)}>

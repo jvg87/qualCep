@@ -17,15 +17,6 @@ export const styles = StyleSheet.create({
 		borderColor: colors.blue[400],
 		borderRadius: 5,
 	},
-	input: {
-		borderWidth: 1,
-		borderColor: colors.blue[400],
-		borderRadius: 5,
-		margin: 18,
-		paddingHorizontal: 8,
-		fontSize: 14,
-		fontWeight: "bold",
-	},
 	data: {
 		alignItems: "flex-start",
 		borderTopWidth: 0.8,

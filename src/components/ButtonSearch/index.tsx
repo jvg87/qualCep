@@ -1,10 +1,10 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { styles } from "./styles";
 
-export const ButtonSearch = () => {
+export const ButtonSearch = ({ ...rest }: TouchableOpacityProps) => {
 	return (
-		<TouchableOpacity style={styles.container}>
+		<TouchableOpacity {...rest} style={styles.container}>
 			<Text style={styles.text}>Buscar</Text>
 		</TouchableOpacity>
 	);

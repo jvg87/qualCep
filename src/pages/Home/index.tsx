@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Modal, Text, View } from "react-native";
 
 import { colors } from "../../styles/colors";
@@ -9,7 +9,7 @@ import { ButtonSearch } from "../../components/ButtonSearch";
 import { InputHome } from "../../components/InputAddress";
 import { ModalPicker } from "../../components/ModalPicker";
 
-import apiCity from "../../services/apiCity";
+import { ResultsContext } from "../../contexts/ResultsContext";
 
 export type StateProps = {
 	id: string;
@@ -22,45 +22,20 @@ export type CityProps = {
 };
 
 const Home = () => {
-	const [state, setState] = useState<StateProps[] | []>([]);
-	const [stateSelected, setStateSelected] = useState<StateProps | undefined>();
+	const {
+		state,
+		city,
+		citySelected,
+		setCitySelected,
+		stateSelected,
+		setStateSelected,
+		address,
+		setAddress,
+		handleSearch,
+	} = useContext(ResultsContext);
+
 	const [modalStateVisible, setModalStateVisible] = useState(false);
-
-	const [city, setCity] = useState<CityProps[] | []>([]);
-	const [citySelected, setCitySelected] = useState<CityProps | undefined>();
 	const [modalCityVisible, setModalCityVisible] = useState(false);
-
-	const [address, setAddress] = useState("");
-
-	useEffect(() => {
-		async function loadState() {
-			try {
-				const response = await apiCity.get("/estados?orderBy=nome");
-
-				setState(response.data);
-				setStateSelected(response.data[0]);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-
-		loadState();
-	}, []);
-
-	useEffect(() => {
-		async function loadCity() {
-			try {
-				const response = await apiCity.get(`/estados/${stateSelected?.id}/municipios`);
-
-				setCity(response.data);
-				setCitySelected(response.data[0]);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-
-		loadCity();
-	}, [stateSelected]);
 
 	return (
 		<View style={styles.container}>
@@ -83,7 +58,7 @@ const Home = () => {
 					<InputHome.ClearButton onPress={() => setAddress("")} />
 				</InputHome.Container>
 
-				<ButtonSearch />
+				<ButtonSearch onPress={handleSearch} />
 
 				<Modal transparent={true} visible={modalStateVisible} animationType="fade">
 					<ModalPicker
