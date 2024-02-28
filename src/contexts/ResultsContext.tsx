@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { ReactNode, createContext, useEffect, useState } from "react";
-import { Alert } from "react-native";
+import { Alert, Keyboard } from "react-native";
 import { CityProps, StateProps } from "../pages/Home";
 import { ResultsProps, StackParams } from "../routes/stackRouter";
 import apiCep from "../services/apiCep";
@@ -18,6 +18,7 @@ type ResultsContextData = {
 	address: string;
 	setAddress: (address: string) => void;
 	handleSearch: () => void;
+	loading: boolean;
 };
 
 type ResultsProviderProps = {
@@ -38,6 +39,8 @@ const ResultsProvider = ({ children }: ResultsProviderProps) => {
 	const [address, setAddress] = useState("");
 
 	const [results, setResults] = useState<ResultsProps[]>([]);
+
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		async function fetchState() {
@@ -84,6 +87,9 @@ const ResultsProvider = ({ children }: ResultsProviderProps) => {
 			Alert.alert("Preencha o endereço!");
 			return;
 		}
+
+		setLoading(true);
+		Keyboard.dismiss();
 		try {
 			const response = await apiCep.get(
 				`/${stateSelected?.sigla}/${citySelected?.nome}/${address}/json`
@@ -96,8 +102,10 @@ const ResultsProvider = ({ children }: ResultsProviderProps) => {
 			loadState();
 			loadCity();
 			setAddress("");
+			setLoading(false);
 		} catch (error) {
 			console.log(error);
+			setLoading(false);
 		}
 	};
 
@@ -114,6 +122,7 @@ const ResultsProvider = ({ children }: ResultsProviderProps) => {
 				address,
 				setAddress,
 				handleSearch,
+				loading,
 			}}
 		>
 			{children}
