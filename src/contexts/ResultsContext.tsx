@@ -99,9 +99,6 @@ const ResultsProvider = ({ children }: ResultsProviderProps) => {
 
 			navigation.navigate("Resultados");
 
-			loadState();
-			loadCity();
-			setAddress("");
 			setLoading(false);
 		} catch (error) {
 			console.log(error);

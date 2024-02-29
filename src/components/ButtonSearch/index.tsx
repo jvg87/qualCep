@@ -7,7 +7,7 @@ import { styles } from "./styles";
 export const ButtonSearch = ({ ...rest }: TouchableOpacityProps) => {
 	const { loading } = useContext(ResultsContext);
 	return (
-		<TouchableOpacity {...rest} style={styles.container}>
+		<TouchableOpacity {...rest} style={styles.container} disabled={loading}>
 			{loading ? (
 				<ActivityIndicator size={26} color={colors.blue[200]} />
 			) : (

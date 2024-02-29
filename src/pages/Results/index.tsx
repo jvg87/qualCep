@@ -6,11 +6,12 @@ import { ResultsContext } from "../../contexts/ResultsContext";
 import { styles } from "./styles";
 
 const Results = () => {
-	const { results } = useContext(ResultsContext);
+	const { results, address } = useContext(ResultsContext);
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}> Resultados da Busca</Text>
+			<Text style={styles.title}> Resultados para: </Text>
+			<Text style={styles.results}>{address}</Text>
 			<FlatList
 				showsVerticalScrollIndicator={false}
 				data={results}

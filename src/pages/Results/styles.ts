@@ -9,7 +9,13 @@ export const styles = StyleSheet.create({
 		width: "100%",
 	},
 	title: {
-		fontSize: 26,
+		fontSize: 20,
+		color: colors.white,
+		marginBottom: 16,
+		textAlign: "center",
+	},
+	results: {
+		fontSize: 20,
 		fontWeight: "bold",
 		color: colors.white,
 		marginBottom: 16,
