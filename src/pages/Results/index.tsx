@@ -19,8 +19,11 @@ const Results = () => {
 					<ResultsCard
 						bairro={item.bairro}
 						cep={item.cep}
-						cidade={item.localidade}
+						localidade={item.localidade}
 						logradouro={item.logradouro}
+						ddd={item.ddd}
+						ibge={item.ibge}
+						uf={item.uf}
 					/>
 				)}
 			/>
