@@ -6,12 +6,18 @@ export const styles = StyleSheet.create({
 		backgroundColor: colors.blue[200],
 		width: "100%",
 		borderRadius: 8,
-		padding: 8,
 		marginBottom: 12,
+		padding: 16,
 	},
 	text: {
 		color: colors.blue[800],
 		fontSize: 18,
-		marginBottom: 6,
+		marginBottom: 4,
+	},
+	cep: {
+		fontSize: 26,
+		fontWeight: "bold",
+		marginBottom: 8,
+		color: colors.blue[800],
 	},
 });

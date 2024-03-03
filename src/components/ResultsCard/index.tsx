@@ -7,17 +7,15 @@ type ResultsCardProps = {
 	logradouro: string;
 	bairro: string;
 	cidade: string;
-	uf: string;
 };
 
-const ResultsCard = ({ bairro, cep, cidade, logradouro, uf }: ResultsCardProps) => {
+const ResultsCard = ({ bairro, cep, cidade, logradouro }: ResultsCardProps) => {
 	return (
 		<TouchableOpacity style={styles.container} activeOpacity={0.7}>
-			<Text style={styles.text}>Cep: {cep}</Text>
-			<Text style={styles.text}>Endereço: {logradouro}</Text>
-			<Text style={styles.text}>Bairro: {bairro}</Text>
-			<Text style={styles.text}>Cidade: {cidade}</Text>
-			<Text style={styles.text}>Estado: {uf}</Text>
+			<Text style={styles.cep}>{cep}</Text>
+			<Text style={styles.text}>{logradouro}</Text>
+			<Text style={styles.text}>{bairro}</Text>
+			<Text style={styles.text}>{cidade}</Text>
 		</TouchableOpacity>
 	);
 };

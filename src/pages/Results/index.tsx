@@ -10,7 +10,7 @@ const Results = () => {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}> Resultados para: </Text>
+			<Text style={styles.title}>{results?.length} resultados para: </Text>
 			<Text style={styles.results}>{address}</Text>
 			<FlatList
 				showsVerticalScrollIndicator={false}
@@ -21,7 +21,6 @@ const Results = () => {
 						cep={item.cep}
 						cidade={item.localidade}
 						logradouro={item.logradouro}
-						uf={item.uf}
 					/>
 				)}
 			/>
