@@ -32,7 +32,7 @@ const FavoritesCard = ({ bairro, cep, ddd, ibge, localidade, logradouro, uf }: R
 				</TouchableOpacity>
 				<TouchableOpacity
 					style={styles.buttonDelete}
-					onPress={handleDeleteFavorite}
+					onPress={() => handleDeleteFavorite(cep)}
 					activeOpacity={0.7}
 				>
 					<Icon name="trash" size={28} color={colors.blue[200]} />

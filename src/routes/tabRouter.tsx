@@ -9,7 +9,7 @@ import StackRouter from "./stackRouter";
 
 export type TabParams = {
 	HomeStack: undefined;
-	Favorites: undefined;
+	Favoritos: undefined;
 };
 
 const Tab = createBottomTabNavigator<TabParams>();
@@ -18,7 +18,6 @@ const TabRouter = () => {
 	return (
 		<Tab.Navigator
 			screenOptions={{
-				headerShown: false,
 				tabBarShowLabel: false,
 				tabBarActiveTintColor: colors.blue[200],
 				tabBarInactiveTintColor: colors.blue[400],
@@ -32,13 +31,16 @@ const TabRouter = () => {
 				name="HomeStack"
 				component={StackRouter}
 				options={{
+					headerShown: false,
 					tabBarIcon: ({ color }) => <Icon name="home" size={32} color={color} />,
 				}}
 			/>
 			<Tab.Screen
-				name="Favorites"
+				name="Favoritos"
 				component={Favorites}
 				options={{
+					headerStyle: { backgroundColor: colors.blue[600] },
+					headerTintColor: colors.blue[200],
 					tabBarIcon: ({ color }) => <Icon name="heart" size={32} color={color} />,
 				}}
 			/>

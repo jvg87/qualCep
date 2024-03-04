@@ -21,7 +21,9 @@ type ResultsContextData = {
 	handleSearch: () => void;
 	loading: boolean;
 	handleFavorite: (data: ResultsProps) => Promise<void>;
-	handleDeleteFavorite: () => void;
+	handleDeleteFavorite: (cep: string) => void;
+	favoritesCep: ResultsProps[];
+	setFavoritesCep: (favorites: ResultsProps[]) => void;
 };
 
 type ResultsProviderProps = {
@@ -42,6 +44,7 @@ const ResultsProvider = ({ children }: ResultsProviderProps) => {
 	const [address, setAddress] = useState("");
 
 	const [results, setResults] = useState<ResultsProps[]>([]);
+	const [favoritesCep, setFavoritesCep] = useState<ResultsProps[]>([]);
 
 	const [loading, setLoading] = useState(false);
 
@@ -122,13 +125,16 @@ const ResultsProvider = ({ children }: ResultsProviderProps) => {
 		try {
 			const response = await AsyncStorage.getItem("@saveCep");
 
-			// console.log(response);
+			const previousData: ResultsProps[] = response ? JSON.parse(response) : [];
 
-			// await AsyncStorage.removeItem("@saveCep");
-
-			const previousData = response ? JSON.parse(response) : [];
+			const cepAlreadyExists = previousData.find((item: ResultsProps) => item.cep === cep);
+			if (cepAlreadyExists) {
+				Alert.alert("Este CEP já foi salvo!");
+				return;
+			}
 
 			const data = [...previousData, newData];
+
 			await AsyncStorage.setItem("@saveCep", JSON.stringify(data));
 			Alert.alert("Salvo com sucesso!");
 		} catch (error) {
@@ -136,8 +142,18 @@ const ResultsProvider = ({ children }: ResultsProviderProps) => {
 		}
 	};
 
-	const handleDeleteFavorite = async () => {
-		Alert.alert("Teste de funcionalidade");
+	const handleDeleteFavorite = async (cep: string) => {
+		try {
+			const response = await AsyncStorage.getItem("@saveCep");
+
+			const previousData = response ? JSON.parse(response) : [];
+
+			const data = previousData.filter((item: ResultsProps) => item.cep !== cep);
+			await AsyncStorage.setItem("@saveCep", JSON.stringify(data));
+			setFavoritesCep(data);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -156,6 +172,8 @@ const ResultsProvider = ({ children }: ResultsProviderProps) => {
 				loading,
 				handleFavorite,
 				handleDeleteFavorite,
+				favoritesCep,
+				setFavoritesCep,
 			}}
 		>
 			{children}
