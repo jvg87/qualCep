@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { ReactNode, createContext, useEffect, useState } from "react";
@@ -19,6 +20,8 @@ type ResultsContextData = {
 	setAddress: (address: string) => void;
 	handleSearch: () => void;
 	loading: boolean;
+	handleFavorite: (data: ResultsProps) => Promise<void>;
+	handleDeleteFavorite: () => void;
 };
 
 type ResultsProviderProps = {
@@ -106,6 +109,37 @@ const ResultsProvider = ({ children }: ResultsProviderProps) => {
 		}
 	};
 
+	const handleFavorite = async ({
+		bairro,
+		cep,
+		ddd,
+		ibge,
+		localidade,
+		logradouro,
+		uf,
+	}: ResultsProps) => {
+		const newData = { bairro, cep, ddd, ibge, localidade, logradouro, uf };
+		try {
+			const response = await AsyncStorage.getItem("@saveCep");
+
+			// console.log(response);
+
+			// await AsyncStorage.removeItem("@saveCep");
+
+			const previousData = response ? JSON.parse(response) : [];
+
+			const data = [...previousData, newData];
+			await AsyncStorage.setItem("@saveCep", JSON.stringify(data));
+			Alert.alert("Salvo com sucesso!");
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleDeleteFavorite = async () => {
+		Alert.alert("Teste de funcionalidade");
+	};
+
 	return (
 		<ResultsContext.Provider
 			value={{
@@ -120,6 +154,8 @@ const ResultsProvider = ({ children }: ResultsProviderProps) => {
 				setAddress,
 				handleSearch,
 				loading,
+				handleFavorite,
+				handleDeleteFavorite,
 			}}
 		>
 			{children}

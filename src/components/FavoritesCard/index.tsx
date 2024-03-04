@@ -1,17 +1,18 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React from "react";
+import React, { useContext } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
+import { ResultsContext } from "../../contexts/ResultsContext";
 import { ResultsProps, StackParams } from "../../routes/stackRouter";
-
-import { styles } from "./styles";
 
 import Icon from "react-native-vector-icons/FontAwesome6";
 import { colors } from "../../styles/colors";
+import { styles } from "./styles";
 
-const ResultsCard = ({ bairro, cep, ddd, ibge, localidade, logradouro, uf }: ResultsProps) => {
+const FavoritesCard = ({ bairro, cep, ddd, ibge, localidade, logradouro, uf }: ResultsProps) => {
 	const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
+	const { handleDeleteFavorite } = useContext(ResultsContext);
 
 	const handleDetails = () => {
 		navigation.navigate("Detalhes", { bairro, cep, ddd, ibge, localidade, logradouro, uf });
@@ -25,11 +26,20 @@ const ResultsCard = ({ bairro, cep, ddd, ibge, localidade, logradouro, uf }: Res
 				<Text style={styles.text}>{bairro}</Text>
 				<Text style={styles.text}>{localidade}</Text>
 			</View>
-			<TouchableOpacity style={styles.containerButton} activeOpacity={0.7} onPress={handleDetails}>
-				<Icon name="magnifying-glass" size={28} color={colors.blue[200]} />
-			</TouchableOpacity>
+			<View style={styles.containerButton}>
+				<TouchableOpacity style={styles.buttonSearch} onPress={handleDetails} activeOpacity={0.7}>
+					<Icon name="magnifying-glass" size={28} color={colors.blue[200]} />
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={styles.buttonDelete}
+					onPress={handleDeleteFavorite}
+					activeOpacity={0.7}
+				>
+					<Icon name="trash" size={28} color={colors.blue[200]} />
+				</TouchableOpacity>
+			</View>
 		</View>
 	);
 };
 
-export default ResultsCard;
+export default FavoritesCard;

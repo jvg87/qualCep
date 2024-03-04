@@ -4,9 +4,9 @@ import { colors } from "../../styles/colors";
 export const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: "center",
-		alignItems: "center",
 		backgroundColor: colors.blue[600],
+		padding: 16,
+		width: "100%",
 	},
 	text: {
 		color: colors.white,
