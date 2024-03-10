@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Linking, Text, TouchableOpacity, View } from "react-native";
 
 import { ResultsContext } from "../../contexts/ResultsContext";
 
@@ -11,6 +11,10 @@ import { styles } from "./styles";
 
 const DetailsCard = ({ bairro, cep, ddd, ibge, localidade, logradouro, uf }: ResultsProps) => {
 	const { handleFavorite } = useContext(ResultsContext);
+
+	const handleMaps = async () => {
+		await Linking.openURL(`https://google.com.br/maps/place/${cep}`);
+	};
 
 	return (
 		<View style={styles.container}>
@@ -37,7 +41,7 @@ const DetailsCard = ({ bairro, cep, ddd, ibge, localidade, logradouro, uf }: Res
 						<Icon name="heart" size={32} color={colors.blue[200]} />
 					</Text>
 				</TouchableOpacity>
-				<TouchableOpacity style={styles.button} activeOpacity={0.7}>
+				<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={handleMaps}>
 					<Text>
 						<Icon name="map" size={32} color={colors.blue[200]} />
 					</Text>
