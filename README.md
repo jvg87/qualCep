@@ -1,79 +1,48 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Qual CEP? - Aplicativo React Native
 
-# Getting Started
+## Descrição
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+O aplicativo "Qual CEP?" foi desenvolvido utilizando o React Native CLI e oferece uma solução intuitiva para encontrar CEPs a partir de informações de estado, cidade e endereço fornecidas pelo usuário. Além disso, o aplicativo permite que o usuário salve CEPs relevantes para consulta futura, com a opção de excluí-los posteriormente. A integração com o mapa também está disponível para visualizar a localização associada a um CEP específico.
 
-## Step 1: Start the Metro Server
+## Funcionalidades
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- Busca de CEP a partir de informações de estado, cidade e endereço.
+- Salvamento e exclusão de CEPs relevantes.
+- Integração com o mapa para visualização da localização associada a um CEP.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Tecnologias Utilizadas
 
-```bash
-# using npm
-npm start
+- **React Native CLI**: Plataforma de desenvolvimento para criar aplicativos móveis usando React.
+- **Axios**: Biblioteca para controlar requisições à API de busca de CEP.
+- **AsyncStorage**: Módulo para armazenar de forma assíncrona dados locais, utilizado para salvar CEPs de interesse.
+- **React Navigation**: Biblioteca para facilitar a navegação entre as páginas do aplicativo.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática ao código, melhorando a manutenibilidade e escalabilidade do projeto.
 
-# OR using Yarn
-yarn start
-```
+## Capturas de Tela
 
-## Step 2: Start your Application
+Inseriremos algumas capturas de tela para ilustrar as principais telas e funcionalidades do aplicativo.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+![Tela Inicial](screenshots/tela_inicial.png)
+_Descrição da imagem: Tela inicial onde o usuário insere as informações de estado, cidade e endereço._
 
-### For Android
+![Resultado da Busca](screenshots/resultado_busca.png)
+_Descrição da imagem: Resultado da busca exibindo o CEP correspondente às informações fornecidas._
 
-```bash
-# using npm
-npm run android
+![Lista de CEPs Salvos](screenshots/lista_ceps_salvos.png)
+_Descrição da imagem: Lista de CEPs salvos pelo usuário, com a opção de excluí-los._
 
-# OR using Yarn
-yarn android
-```
+## Como Executar o Projeto
 
-### For iOS
+1. Clone o repositório: `git clone https://github.com/jvg87/qualCep.git`
+2. Instale as dependências: `npm install` ou `yarn install`
+3. Execute o aplicativo: `npx react-native run-android` ou `npx react-native run-ios`
 
-```bash
-# using npm
-npm run ios
+Certifique-se de ter o ambiente de desenvolvimento configurado para o React Native antes de executar os passos acima.
 
-# OR using Yarn
-yarn ios
-```
+## Contribuições
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests para melhorar o aplicativo.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+## Licença
 
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Este projeto está licenciado sob a [MIT License](LICENSE).
