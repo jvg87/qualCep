@@ -129,14 +129,14 @@ const ResultsProvider = ({ children }: ResultsProviderProps) => {
 
 			const cepAlreadyExists = previousData.find((item: ResultsProps) => item.cep === cep);
 			if (cepAlreadyExists) {
-				Alert.alert("Este CEP já foi salvo!");
+				Alert.alert("OPS!", "Este CEP já foi salvo!");
 				return;
 			}
 
 			const data = [...previousData, newData];
 
 			await AsyncStorage.setItem("@saveCep", JSON.stringify(data));
-			Alert.alert("Salvo com sucesso!");
+			Alert.alert("Salvo com sucesso!", "CEP adicionado aos favoritos!");
 		} catch (error) {
 			console.log(error);
 		}
