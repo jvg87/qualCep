@@ -22,13 +22,16 @@ O aplicativo "Qual CEP?" foi desenvolvido utilizando o React Native CLI e oferec
 
 Inseriremos algumas capturas de tela para ilustrar as principais telas e funcionalidades do aplicativo.
 
-![Tela Inicial](screenshots/tela_inicial.png)
+![Tela Inicial](screenshots/tela_Home.png)
 _Descrição da imagem: Tela inicial onde o usuário insere as informações de estado, cidade e endereço._
 
-![Resultado da Busca](screenshots/resultado_busca.png)
+![Resultado da Busca](screenshots/resultados.png)
 _Descrição da imagem: Resultado da busca exibindo o CEP correspondente às informações fornecidas._
 
-![Lista de CEPs Salvos](screenshots/lista_ceps_salvos.png)
+![Detalhes do Endereço](screenshots/detalhes.png)
+_Descrição da imagem: Detalhes do CEP correspondente às informações fornecidas._
+
+![Lista de CEPs Salvos](screenshots/favoritos.png)
 _Descrição da imagem: Lista de CEPs salvos pelo usuário, com a opção de excluí-los._
 
 ## Como Executar o Projeto
